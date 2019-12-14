@@ -13,7 +13,9 @@ public class RestRouteBuilder extends RouteBuilder {
         .process((exchange) ->
         {
             ProducerTemplate template = exchange.getContext().createProducerTemplate();
-            template.sendBodyAndHeader("direct:incoming", "Hello World", "HEADER1", "HEADER_1_VALUE");
+            //template.sendBodyAndHeader("direct:incoming", "Hello World", "HEADER1", "HEADER_1_VALUE");
+            //template.sendBodyAndHeader("activemq:queue:inbox", "Hello World", "HEADER1", "HEADER_1_VALUE");
+            template.sendBodyAndHeaders("activemq:queue:inbox", exchange.getIn().getBody(), exchange.getIn().getHeaders());
         })
         //.from("direct:out")
         //.setBody();

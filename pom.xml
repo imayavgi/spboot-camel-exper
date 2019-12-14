@@ -12,7 +12,7 @@
 	<artifactId>spboot-camel-exper</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>spboot-camel-exper</name>
-	<description>Demo project for Spring Boot and Camel</description>
+	<description>Experimentation for Spring Boot and Camel</description>
 
 	<properties>
 		<java.version>1.8</java.version>
@@ -20,10 +20,12 @@
 	</properties>
 
 	<dependencies>
+		<!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-activemq</artifactId>
 		</dependency>
+		-->
 		<dependency>
 			<groupId>org.apache.camel.springboot</groupId>
 			<artifactId>camel-spring-boot-starter</artifactId>
@@ -42,6 +44,11 @@
 		<dependency>
 			<groupId>org.apache.camel.springboot</groupId>
 			<artifactId>camel-bean-starter</artifactId>
+			<version>${apache.camel.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.camel.springboot</groupId>
+			<artifactId>camel-activemq-starter</artifactId>
 			<version>${apache.camel.version}</version>
 		</dependency>
 		
