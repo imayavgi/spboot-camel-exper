@@ -13,8 +13,11 @@ public class JmsRecieverRouteBuilder extends RouteBuilder {
             {
                 System.out.println("JMS RX HEADERS : "+exchange.getIn().getHeaders());
                 System.out.println("JMS RX BODY: "+exchange.getIn().getBody(String.class));
-                exchange.getIn().setBody(exchange.getIn().getBody(String.class).toString().toUpperCase());
+                String data = exchange.getIn().getBody(String.class).toString().toUpperCase().split("=")[1];
+                exchange.getIn().setBody(data);
             })
+            .unmarshal().csv()
+            .marshal().csv()
             .to("stream:out");
         }
     }
