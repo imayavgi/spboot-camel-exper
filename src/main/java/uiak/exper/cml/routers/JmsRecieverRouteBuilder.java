@@ -16,7 +16,9 @@ public class JmsRecieverRouteBuilder extends RouteBuilder {
                 String data = exchange.getIn().getBody(String.class).toString().toUpperCase().split("=")[1];
                 exchange.getIn().setBody(data);
             })
+            //convert csv record into List<List<String>>
             .unmarshal().csv()
+            //convert List<List<String>> into csv record
             .marshal().csv()
             .to("stream:out");
         }
