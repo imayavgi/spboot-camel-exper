@@ -9,6 +9,8 @@ public class SimpleRouteBuilder extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("direct:incoming")
+        .routeId("simplesvc")
+        .startupOrder(4)
         .bean("simpleService")
         .process((exchange) ->
         {

@@ -1,5 +1,7 @@
 package uiak.exper.cml.spbcamelexper;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.camel.CamelContext;
 import org.apache.camel.component.activemq.ActiveMQComponent;
@@ -22,18 +24,23 @@ public class ApplicationConfiguration {
     @Autowired
     CamelContext camelContext;
 
+    @PostConstruct
+    public void camelConfigure() {
+        camelContext.getShutdownStrategy().setTimeout(60);
+    }
+
     @Bean
     public  JmsConfiguration jmsConfiguration() {
-        ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
+        final ActiveMQConnectionFactory factory = new ActiveMQConnectionFactory();
         factory.setBrokerURL(brokerURL);
-        JmsConfiguration config = new JmsConfiguration();
+        final JmsConfiguration config = new JmsConfiguration();
         config.setConnectionFactory(factory);
         return config;
     }
 
     @Bean
-    public ActiveMQComponent activemq(JmsConfiguration jmsConfiguration) {
-        ActiveMQComponent comp = new ActiveMQComponent();
+    public ActiveMQComponent activemq(final JmsConfiguration jmsConfiguration) {
+        final ActiveMQComponent comp = new ActiveMQComponent();
         comp.setConfiguration(jmsConfiguration);
         return comp;
     }
