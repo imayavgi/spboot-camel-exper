@@ -26,7 +26,7 @@ public class RestRouteBuilder extends RouteBuilder {
 
         from("jetty:http://localhost:8000/terminate")        
         .routeId("terminaterest")
-        .startupOrder(3)
+        .startupOrder(4)
         .process((exchange) ->
         {
             Thread stop = new Thread() {

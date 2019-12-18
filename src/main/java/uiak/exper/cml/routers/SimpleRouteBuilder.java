@@ -10,7 +10,7 @@ public class SimpleRouteBuilder extends RouteBuilder {
     public void configure() throws Exception {
         from("direct:incoming")
         .routeId("simplesvc")
-        .startupOrder(4)
+        .startupOrder(1)
         .bean("simpleService")
         .process((exchange) ->
         {

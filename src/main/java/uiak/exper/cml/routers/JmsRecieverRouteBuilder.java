@@ -10,7 +10,7 @@ public class JmsRecieverRouteBuilder extends RouteBuilder {
         public void configure() throws Exception {
             from("activemq:queue:inbox")
             .routeId("jmsreciever")
-            .startupOrder(1)
+            .startupOrder(3)
             .process((exchange) ->
             {
                 System.out.println("JMS RX HEADERS : "+exchange.getIn().getHeaders());
